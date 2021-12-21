@@ -1,0 +1,14 @@
+{ "id": "Quauke",
+  "name": "CL watch",
+  "shortName":"clwatch",
+  "version":"0.01",
+  "description": "Watch comandline style in blueish colour",
+  "icon": "app.png",
+  "tags": "",
+  "supports" : ["BANGLEJS2"],  
+  "readme": "README.md",
+  "storage": [
+    {"name":"clwatch.js","url":"clwatch.js"},
+    {"name":"clwatch.img","url":"clwatch.js","evaluate":true}
+  ]
+}
