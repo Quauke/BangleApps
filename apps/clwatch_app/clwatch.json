@@ -8,7 +8,7 @@
   "supports" : ["BANGLEJS2"],  
   "readme": "README.md",
   "storage": [
-    {"name":"clwatch.js","url":"clwatch.js"},
+    {"name":"clwatch_app.js","url":"clwatch.js"},
     {"name":"clwatch.img","url":"clwatch.js","evaluate":true}
   ]
 }
