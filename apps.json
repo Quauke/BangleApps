@@ -5063,16 +5063,20 @@
       {"name":"ltherm.img","url":"icon.js","evaluate":true}
     ]
   },
-  { "id": "clwatch",
-  "name": "Comandline Watch",
-  "shortName":"clwatch",
-  "icon": "app.png",
-  "version":"0.01",
-  "description": "comandline watch in blue",
-  "tags": "",
-  "storage": [
-    {"name":"clwatch.app.js","url":"app.js"},
-    {"name":"clwatch.img","url":"app-icon.js","evaluate":true}
+  {
+    "id": "clwatch",
+    "name": "Comandline Watch",
+    "shortName":"clwatch",
+    "icon": "clwatch.png",
+    "version":"0.01",
+    "description": "comandline watch in blue",
+    "type": "clock",
+    "tags": "clock",
+    "supports": ["BANGLEJS","BANGLEJS2"],
+    "allow_emulator": true,
+    "storage": [
+      {"name":"clwatch.app.js","url":"clwatch.js"},
+      {"name":"clwatch.img","url":"clwatch-icon.js","evaluate":true}
   ]
 }
 ]
