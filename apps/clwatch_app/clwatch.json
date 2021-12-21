@@ -10,6 +10,6 @@
   "readme": "README.md",
   "storage": [
     {"name":"clwatch_app.js","url":"clwatch.js"},
-    {"name":"clwatch.img","url":"clwatch.js","evaluate":true}
+    {"name":"clwatch.img","url":"clwatch.js","evaluate":false}
   ]
 }
