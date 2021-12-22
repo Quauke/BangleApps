@@ -5064,7 +5064,7 @@
     ]
   },
   {
-    "id": "clwatch",
+    "id": "clwatch_app",
     "name": "Comandline Watch",
     "shortName":"clwatch",
     "icon": "clwatch.png",
