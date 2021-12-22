@@ -5072,8 +5072,9 @@
     "description": "comandline watch in blue",
     "type": "clock",
     "tags": "clock",
-    "supports": ["BANGLEJS","BANGLEJS2"],
+    "supports": ["BANGLEJS2"],
     "allow_emulator": true,
+    "readme": "README.md",
     "storage": [
       {"name":"clwatch.app.js","url":"clwatch.js"},
       {"name":"clwatch.img","url":"clwatch-icon.js","evaluate":true}
