@@ -5068,7 +5068,7 @@
     "name": "Comandline Watch",
     "shortName":"clwatch",
     "icon": "clwatch.png",
-    "version":"0.01",
+    "version":"0.2",
     "description": "comandline watch in blue",
     "type": "clock",
     "tags": "clock",
