@@ -5077,7 +5077,7 @@
     "readme": "README.md",
     "storage": [
       {"name":"clwatch.app.js","url":"clwatch.js"},
-      {"name":"clwatch.img","url":"clwatch-icon.js","evaluate":true}
+      {"name":"clwatch.img","url":"clwatch.icon.js","evaluate":true}
   ]
 }
 ]
