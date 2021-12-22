@@ -15,6 +15,85 @@ var sendHid, next, prev, toggle, up, down, profile;
 var lasty = 0;
 var lastx = 0;
 
+if (settings.HID=="kbmedia") {
+  profile = 'Music';
+  sendHid = function (code, cb) {
+    try {
+      NRF.sendHIDReport([1,code], () => {
+        NRF.sendHIDReport([1,0], () => {
+          if (cb) cb();
+        });
+      });
+    } catch(e) {
+      print(e);
+    }
+  };
+  next = function (cb) { sendHid(0x01, cb); };
+  prev = function (cb) { sendHid(0x02, cb); };
+  toggle = function (cb) { sendHid(0x10, cb); };
+  up = function (cb) {sendHid(0x40, cb); };
+  down = function (cb) { sendHid(0x80, cb); };
+} else {
+  E.showPrompt("Enable HID?",{title:"HID disabled"}).then(function(enable) {
+    if (enable) {
+      settings.HID = "kbmedia";
+      require("Storage").write('setting.json', settings);
+      setTimeout(load, 1000, "hidmsicswipe.app.js");
+    } else setTimeout(load, 1000);
+  });
+}
+
+if (next) {
+  setWatch(function(e) {
+    var len = e.time - e.lastTime;
+      E.showMessage('lock');
+      setTimeout(drawApp, 1000);
+      Bangle.setLocked(true);
+  }, BTN1, { edge:"falling",repeat:true,debounce:50});
+  Bangle.on('drag', function(e) {
+    if(!e.b){
+      console.log(lasty);
+      console.log(lastx);
+    if(lasty >  40){
+    writeLine('Down', 3);
+     // setTimeout(drawApp, 1000);
+     // Bluetooth.println(JSON.stringify({t:"music", n:"volumedown"}));
+      down(() => {});
+    }
+      else if(lasty < -40){
+       writeLine('Up', 3);
+     // setTimeout(drawApp, 1000);
+     //Bluetooth.println(JSON.stringify({t:"music", n:"volumeup"}));
+
+      up(() => {});
+    } else if(lastx < -40){
+    writeLine('Prev', 3);
+     // setTimeout(drawApp, 1000);
+     // Bluetooth.println(JSON.stringify({t:"music", n:"previous"}));
+      prev(() => {});
+    } else if(lastx > 40){
+    writeLine('Next', 3);
+     // setTimeout(drawApp, 1000);
+     // Bluetooth.println(JSON.stringify({t:"music", n:"next"}));
+      next(() => {});
+    } else if(lastx==0 && lasty==0){
+    writeLine('play/pause', 3);
+      //setTimeout(drawApp, 1000);
+      //  Bluetooth.println(JSON.stringify({t:"music", n:"play"}));
+
+      toggle(() => {});
+    }
+      lastx = 0;
+      lasty = 0;
+    }
+            else{
+            lastx = lastx + e.dx;
+            lasty = lasty + e.dy;
+  }
+  });
+
+}
+
 
 let textCol = g.theme.dark ? "#0bd" : "#0bd";
 
@@ -70,9 +149,11 @@ Bangle.on('lcdPower',function(on) {
   if (on) drawAll();
 });
 var click = setInterval(updateTime, 1000);
+// Show launcher when button pressed
 Bangle.setUI("clockupdown", btn=>{
-  drawAll();
+  drawAll(); // why do we redraw here??
 });
 Bangle.loadWidgets();
 Bangle.drawWidgets();
 drawAll();
+
